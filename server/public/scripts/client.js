@@ -1,74 +1,87 @@
 $(document).ready(function(){
-  currentIndex = 0;
-    // Upon page load, get the data from the server
+  var currentIndex = 0;
+  // Upon page load, get the data from the server
+  $.ajax({
+    type: "GET",
+    url: "/data",
+    success: function(data){
+      currentIndex;
+      var $containers = '';
+      var $numPeople = '';
+      // yay! we have data!
+      // console.log('returned data from server: ', data);
 
-    $.ajax({
-      type: "GET",
-      url: "/data",
-      success: function(data){
-        // yay! we have data!
-        // console.log('returned data from server: ', data);
-        // // var currentIndex = 0;
-        // // var containers = $('.studentContainer');
-        // // var numStudents = data.phirephiters.length;
-        // console.log(numStudents);
-
-        for (var i = 0; i < data.phirephiters.length; i++) {
-          // console.log(.data.phirephiter.name.eq());
-        // console.log(data.phirephiters[i].name);
+      for (var i = 0; i < data.phirephiters.length; i++) {
+        currentIndex;
         addingEveryoneWillyNilly(data.phirephiters[i]);
         addingColoredSelector();
-        currentIndex;
         whichStudentIsDisplayed();
         changingButtonColor();
 
-        }
+      }//end for loop
 
-      }
-    });//end ajax
+      buttonFunctionality();
+      console.log("index after button func" + currentIndex);
 
-    // append ONE persons info at DOM load
-    function addingEveryoneWillyNilly(phirephiter) {
+    }//end success function
+  });//end ajax
+
+  // append ONE persons info at DOM load
+  function addingEveryoneWillyNilly(phirephiter) {
     $('#sliderContainer').append('<div class ="studentContainer"></div>');
     var $el = $('#sliderContainer').children().last();
     $el.append('<h2>Name: ' + phirephiter.name + '</h2>');
     $el.append('<img src ="' + phirephiter.imageURL + '" height = "300px" width = "300px"/>')
     $el.append('<h3>Git Hub User Name: ' + phirephiter.git_username + '</h3>');
     $el.append('<p> "' + phirephiter.shoutout + '"</p>')
-} //ends adding willy nilly function
+  } //ends adding willy nilly function
 
-function addingColoredSelector(){
-  $('#pickerContainer').append('<div class ="pickerButton"></div>');
-}
+  function addingColoredSelector(){
+    $('#pickerContainer').append('<div class ="pickerButton"></div>');
+  }
 
-function changingButtonColor(){
-  $('.pickerButton').css("background-color", "white");
-  $('.pickerButton').eq(currentIndex).css({"background-color":"orange", "border": "2px solid white"});
-}
+  function changingButtonColor(){
+    $('.pickerButton').css("background-color", "white");
+    $('.pickerButton').eq(currentIndex).css({"background-color":"orange", "border": "2px solid white"});
+  }
 
-function whichStudentIsDisplayed (){
-  $('.studentContainer').hide();
-  $('.studentContainer').eq(currentIndex).css("display", "inline-block");
-}
+  function whichStudentIsDisplayed (){
+    $('.studentContainer').hide();
+    $('.studentContainer').eq(currentIndex).css("display", "inline-block");
+  }
 
+  function buttonFunctionality(){
+    $containers = $(".studentContainer");
+    $numPeople = $containers.length;
+    console.log($numPeople);
+    nextButtonFunc();
+    prevButtonFunc();
+    console.log("current index is what?!" + currentIndex);
+  }
 
-//UNHIDE A PERSON
-// function unHidePerson() {
-//   $('.studentContainer').this().css('display', 'block');
-// }
-//
-// store the div in the object?
+  function nextButtonFunc(){
+    $('#nextButton').on('click', function(){
+      console.log('NEXT button has been clicked');
+      currentIndex++;
+      if (currentIndex > $numPeople - 1){
+        currentIndex = 0;
+      }
+      currentIndex;
+      console.log(currentIndex);
+    });
+  }
 
-// function cyclePeople(inPerson){
-//   var currentPerson = $('.studentContainer').eq(phirephiters[i]);
-//   //     $('#sliderContainer').append('<div class ="studentContainer"></div>');
-//   //     var $el = $('#sliderContainer').children().last();
-//   //     $el.append('<h2>Name: ' + phirephiter.name + '</h2>');
-//   //     $el.append('<img src ="' + phirephiter.imageURL + '" height = "300px" width = "300px"/>')
-//   //     $el.append('<h3>Git Hub User Name: ' + phirephiter.git_username + '</h3>');
-//   //     $el.append('<p> "' + phirephiter.shoutout + '"</p>')
-// }
-
+  function prevButtonFunc(){
+    $('#prevButton').on('click', function(){
+      console.log('PREV button has been clicked');
+      currentIndex--;
+      if (currentIndex < 0){
+        currentIndex = $numPeople - 1;
+      }
+      currentIndex;
+      console.log(currentIndex);
+    });
+  }
 
 });
 
