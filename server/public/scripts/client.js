@@ -19,8 +19,9 @@ $(document).ready(function(){
         addingEveryoneWillyNilly(data.phirephiters[i]);
         addingColoredSelector();
         currentIndex;
-        $('.studentContainer').hide();
-        $('.studentContainer').eq(currentIndex).css("display", "inline-block");
+        whichStudentIsDisplayed();
+        changingButtonColor();
+
         }
 
       }
@@ -40,8 +41,15 @@ function addingColoredSelector(){
   $('#pickerContainer').append('<div class ="pickerButton"></div>');
 }
 
-// $('.pickerContainer').css("background-color", "white");
-// $('.pickerContainer').eq(currentIndex).css("background-color", "black");
+function changingButtonColor(){
+  $('.pickerButton').css("background-color", "white");
+  $('.pickerButton').eq(currentIndex).css({"background-color":"orange", "border": "2px solid white"});
+}
+
+function whichStudentIsDisplayed (){
+  $('.studentContainer').hide();
+  $('.studentContainer').eq(currentIndex).css("display", "inline-block");
+}
 
 
 //UNHIDE A PERSON
