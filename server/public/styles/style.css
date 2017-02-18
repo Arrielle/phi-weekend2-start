@@ -18,3 +18,22 @@
   margin-top: 10px;
   /*display: none;*/
 }
+
+.pickerButton {
+  background-color: white;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  margin: 5px;
+}
+
+#pickerContainer {
+  background-color: black;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 10px;
+  text-align: center;
+}

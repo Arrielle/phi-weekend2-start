@@ -17,6 +17,7 @@ $(document).ready(function(){
           // console.log(.data.phirephiter.name.eq());
         // console.log(data.phirephiters[i].name);
         addingEveryoneWillyNilly(data.phirephiters[i]);
+        addingColoredSelector();
         currentIndex;
         $('.studentContainer').hide();
         $('.studentContainer').eq(currentIndex).css("display", "inline-block");
@@ -35,6 +36,12 @@ $(document).ready(function(){
     $el.append('<p> "' + phirephiter.shoutout + '"</p>')
 } //ends adding willy nilly function
 
+function addingColoredSelector(){
+  $('#pickerContainer').append('<div class ="pickerButton"></div>');
+}
+
+// $('.pickerContainer').css("background-color", "white");
+// $('.pickerContainer').eq(currentIndex).css("background-color", "black");
 
 
 //UNHIDE A PERSON
