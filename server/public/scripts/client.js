@@ -1,24 +1,59 @@
 $(document).ready(function(){
-
+  currentIndex = 0;
     // Upon page load, get the data from the server
+
     $.ajax({
       type: "GET",
       url: "/data",
       success: function(data){
         // yay! we have data!
         // console.log('returned data from server: ', data);
-        // console.log('WHAT IS UP');
+        // // var currentIndex = 0;
+        // // var containers = $('.studentContainer');
+        // // var numStudents = data.phirephiters.length;
+        // console.log(numStudents);
+
         for (var i = 0; i < data.phirephiters.length; i++) {
-        console.log(data.phirephiters[i].name);
+          // console.log(.data.phirephiter.name.eq());
+        // console.log(data.phirephiters[i].name);
+        addingEveryoneWillyNilly(data.phirephiters[i]);
+        currentIndex;
+        $('.studentContainer').hide();
+        $('.studentContainer').eq(currentIndex).css("display", "inline-block");
         }
 
       }
     });//end ajax
 
-    //append ONE persons info at DOM load
+    // append ONE persons info at DOM load
     function addingEveryoneWillyNilly(phirephiter) {
-    $('#sliderContainer').append('<div class ="studentContainer">This is a student container. I need to do something with a for loop.</div>');
+    $('#sliderContainer').append('<div class ="studentContainer"></div>');
+    var $el = $('#sliderContainer').children().last();
+    $el.append('<h2>Name: ' + phirephiter.name + '</h2>');
+    $el.append('<img src ="' + phirephiter.imageURL + '" height = "300px" width = "300px"/>')
+    $el.append('<h3>Git Hub User Name: ' + phirephiter.git_username + '</h3>');
+    $el.append('<p> "' + phirephiter.shoutout + '"</p>')
 } //ends adding willy nilly function
+
+
+
+//UNHIDE A PERSON
+// function unHidePerson() {
+//   $('.studentContainer').this().css('display', 'block');
+// }
+//
+// store the div in the object?
+
+// function cyclePeople(inPerson){
+//   var currentPerson = $('.studentContainer').eq(phirephiters[i]);
+//   //     $('#sliderContainer').append('<div class ="studentContainer"></div>');
+//   //     var $el = $('#sliderContainer').children().last();
+//   //     $el.append('<h2>Name: ' + phirephiter.name + '</h2>');
+//   //     $el.append('<img src ="' + phirephiter.imageURL + '" height = "300px" width = "300px"/>')
+//   //     $el.append('<h3>Git Hub User Name: ' + phirephiter.git_username + '</h3>');
+//   //     $el.append('<p> "' + phirephiter.shoutout + '"</p>')
+// }
+
 
 });
 
