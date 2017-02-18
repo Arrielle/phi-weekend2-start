@@ -37,3 +37,8 @@
   margin-top: 10px;
   text-align: center;
 }
+
+.pickerButton:hover {
+  height: 35px;
+  width: 35px;
+}

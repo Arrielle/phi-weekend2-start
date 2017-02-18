@@ -1,30 +1,34 @@
 $(document).ready(function(){
-  var currentIndex = 0;
+  var currentIndex = '';
   // Upon page load, get the data from the server
   $.ajax({
     type: "GET",
     url: "/data",
     success: function(data){
-      currentIndex;
       var $containers = '';
       var $numPeople = '';
       // yay! we have data!
       // console.log('returned data from server: ', data);
 
+
+      console.log('WHAT IS THIS ' + currentIndex);
+
       for (var i = 0; i < data.phirephiters.length; i++) {
-        currentIndex;
         addingEveryoneWillyNilly(data.phirephiters[i]);
         addingColoredSelector();
-        whichStudentIsDisplayed();
-        changingButtonColor();
-
       }//end for loop
 
       buttonFunctionality();
+      whichStudentIsDisplayed(); // somehow need to tie in currentIndex
+      changingButtonColor(); // somehow need to tie in currentIndex
       console.log("index after button func" + currentIndex);
-
+    boxOnClick();
     }//end success function
+
   });//end ajax
+
+
+  // boxOnClick();
 
   // append ONE persons info at DOM load
   function addingEveryoneWillyNilly(phirephiter) {
@@ -46,8 +50,9 @@ $(document).ready(function(){
   }
 
   function whichStudentIsDisplayed (){
+    currentIndex;
     $('.studentContainer').hide();
-    $('.studentContainer').eq(currentIndex).css("display", "inline-block");
+    $('.studentContainer').eq(currentIndex).css({"display":"inline-block", "transition":"opacity 3s ease-in"});
   }
 
   function buttonFunctionality(){
@@ -56,30 +61,39 @@ $(document).ready(function(){
     console.log($numPeople);
     nextButtonFunc();
     prevButtonFunc();
-    console.log("current index is what?!" + currentIndex);
   }
 
   function nextButtonFunc(){
     $('#nextButton').on('click', function(){
-      console.log('NEXT button has been clicked');
       currentIndex++;
       if (currentIndex > $numPeople - 1){
         currentIndex = 0;
       }
       currentIndex;
-      console.log(currentIndex);
+      whichStudentIsDisplayed();
+      changingButtonColor();
     });
   }
 
   function prevButtonFunc(){
     $('#prevButton').on('click', function(){
-      console.log('PREV button has been clicked');
       currentIndex--;
       if (currentIndex < 0){
         currentIndex = $numPeople - 1;
       }
       currentIndex;
-      console.log(currentIndex);
+      whichStudentIsDisplayed();
+      changingButtonColor();
+    });
+  }
+
+  function boxOnClick(){
+    $('#pickerContainer').on('click', '.pickerButton', function(){
+      console.log('box was clicked');
+    var selectedPickerButton = $('.pickerButton').index(this);
+    currentIndex = selectedPickerButton;
+    whichStudentIsDisplayed();
+    changingButtonColor();
     });
   }
 
