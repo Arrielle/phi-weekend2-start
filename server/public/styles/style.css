@@ -1,8 +1,8 @@
 #sliderContainer{
   background-color: orange;
   width: 90%;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -16,6 +16,7 @@
   padding-top: 20px;
   padding-bottom: 20px;
   margin-top: 10px;
+  transition: opacity 3s ease-in-out;
   /*display: none;*/
 }
 
@@ -41,4 +42,12 @@
 .pickerButton:hover {
   height: 35px;
   width: 35px;
+}
+
+#prevButton {
+  padding: 10px;
+}
+
+#nextButton {
+  padding: 10px;
 }
