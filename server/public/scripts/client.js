@@ -37,7 +37,7 @@ $(document).ready(function(){
     var $el = $('#sliderContainer').children().last();
     $el.append('<h2>Name: ' + phirephiter.name + '</h2>');
     $el.append('<img src ="' + phirephiter.imageURL + '" height = "300px" width = "300px"/>')
-    $el.append('<h3>Git Hub User Name: ' + phirephiter.git_username + '</h3>');
+    $el.append('<h3>Git Hub Link: ' + '<a href = "www.github.com/' + phirephiter.git_username + '">' + phirephiter.git_username + '</a>' + '</h3>');
     $el.append('<p> "' + phirephiter.shoutout + '"</p>');
   } //ends adding willy nilly function
 
