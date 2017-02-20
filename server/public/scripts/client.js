@@ -1,5 +1,6 @@
 $(document).ready(function(){
   var currentIndex = '';
+  var intervalID = setInterval(intervalFunction, 1000);
   // Upon page load, get the data from the server
   $.ajax({
     type: "GET",
@@ -7,6 +8,7 @@ $(document).ready(function(){
     success: function(data){
       var $containers = '';
       var $numPeople = '';
+
       // yay! we have data!
       // console.log('returned data from server: ', data);
 
@@ -16,16 +18,19 @@ $(document).ready(function(){
       for (var i = 0; i < data.phirephiters.length; i++) {
         addingEveryoneWillyNilly(data.phirephiters[i]);
         addingColoredSelector();
+        intervalID;
       }//end for loop
 
       buttonFunctionality();
       whichStudentIsDisplayed(); // somehow need to tie in currentIndex
       changingButtonColor(); // somehow need to tie in currentIndex
+
       console.log("index after button func" + currentIndex);
-    boxOnClick();
+      boxOnClick();
     }//end success function
 
   });//end ajax
+
 
 
   // boxOnClick();
@@ -65,7 +70,9 @@ $(document).ready(function(){
 
   function nextButtonFunc(){
     $('#nextButton').on('click', function(){
-      currentIndex++;
+      clearInterval(intervalID);
+      // intervalID;
+      // currentIndex++;
       if (currentIndex > $numPeople - 1){
         currentIndex = 0;
       }
@@ -77,6 +84,8 @@ $(document).ready(function(){
 
   function prevButtonFunc(){
     $('#prevButton').on('click', function(){
+      // clearInterval(intervalID);
+      // intervalID;
       currentIndex--;
       if (currentIndex < 0){
         currentIndex = $numPeople - 1;
@@ -89,13 +98,31 @@ $(document).ready(function(){
 
   function boxOnClick(){
     $('#pickerContainer').on('click', '.pickerButton', function(){
+      // intervalID;
+      // currentIndex++;
       console.log('box was clicked');
-    var selectedPickerButton = $('.pickerButton').index(this);
-    currentIndex = selectedPickerButton;
-    whichStudentIsDisplayed();
-    changingButtonColor();
+      var selectedPickerButton = $('.pickerButton').index(this);
+      currentIndex = selectedPickerButton;
+      whichStudentIsDisplayed();
+      changingButtonColor();
     });
   }
+
+
+  function intervalFunction (){
+    if (currentIndex >= $containers.length - 1) {
+      currentIndex = 0;
+    } else {
+      currentIndex++;
+      whichStudentIsDisplayed();
+      changingButtonColor();
+      intervalID;
+      console.log(currentIndex);
+    }
+  }
+
+
+
 
 });
 
