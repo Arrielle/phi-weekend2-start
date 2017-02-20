@@ -13,9 +13,6 @@ $(document).ready(function(){
       // yay! we have data!
       // console.log('returned data from server: ', data);
 
-
-      console.log('WHAT IS THIS ' + currentIndex);
-
       for (var i = 0; i < data.phirephiters.length; i++) {
         addingEveryoneWillyNilly(data.phirephiters[i]);
         addingColoredSelector();
@@ -25,8 +22,6 @@ $(document).ready(function(){
       buttonFunctionality();
       whichStudentIsDisplayed(); // somehow need to tie in currentIndex
       changingButtonColor(); // somehow need to tie in currentIndex
-
-      console.log("index after button func" + currentIndex);
       boxOnClick();
     }//end success function
 
@@ -43,7 +38,7 @@ $(document).ready(function(){
     $el.append('<h2>Name: ' + phirephiter.name + '</h2>');
     $el.append('<img src ="' + phirephiter.imageURL + '" height = "300px" width = "300px"/>')
     $el.append('<h3>Git Hub User Name: ' + phirephiter.git_username + '</h3>');
-    $el.append('<p> "' + phirephiter.shoutout + '"</p>')
+    $el.append('<p> "' + phirephiter.shoutout + '"</p>');
   } //ends adding willy nilly function
 
   function addingColoredSelector(){
@@ -58,13 +53,13 @@ $(document).ready(function(){
   function whichStudentIsDisplayed (){
     currentIndex;
     $('.studentContainer').hide();
+    // $('.studentContainer').css({"display":"hide"});
     $('.studentContainer').eq(currentIndex).css({"display":"inline-block", "transition":"opacity 3s ease-in"});
   }
 
   function buttonFunctionality(){
     $containers = $(".studentContainer");
     $numPeople = $containers.length;
-    console.log($numPeople);
     nextButtonFunc();
     prevButtonFunc();
   }
@@ -73,13 +68,11 @@ $(document).ready(function(){
      $('#nextButton').on('click', function(){
        clearInterval(newIntervalID);
        clearInterval(intervalID);
-      console.log('NEXT button has been clicked');
        currentIndex++;
        if (currentIndex > $numPeople - 1){
          currentIndex = 0;
        }
        currentIndex;
-      console.log(currentIndex);
       whichStudentIsDisplayed();
       changingButtonColor();
       newIntervalID = setInterval(intervalFunction, 3000);
@@ -106,7 +99,6 @@ $(document).ready(function(){
       clearInterval(newIntervalID);
       clearInterval(intervalID);
       currentIndex++;
-      console.log('box was clicked');
       var selectedPickerButton = $('.pickerButton').index(this);
       currentIndex = selectedPickerButton;
       whichStudentIsDisplayed();
