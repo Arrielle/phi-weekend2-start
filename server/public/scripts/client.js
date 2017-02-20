@@ -1,6 +1,6 @@
 $(document).ready(function(){
   var currentIndex = '';
-  var intervalID = setInterval(intervalFunction, 3000);
+  var intervalID = setInterval(intervalFunction, 10000);
   var newIntervalID = '';
   // Upon page load, get the data from the server
   $.ajax({
@@ -53,8 +53,9 @@ $(document).ready(function(){
   function whichStudentIsDisplayed (){
     currentIndex;
     $('.studentContainer').hide();
-    // $('.studentContainer').css({"display":"hide"});
-    $('.studentContainer').eq(currentIndex).css({"display":"inline-block", "transition":"opacity 3s ease-in"});
+    // $('.studentContainer').css({"display":"none"});
+    $('.studentContainer').eq(currentIndex).css({"display":"inline-block"});
+    $('.studentContainer').eq(currentIndex).hide().fadeIn('slow');
   }
 
   function buttonFunctionality(){
@@ -113,11 +114,21 @@ $(document).ready(function(){
       currentIndex = 0;
     } else {
       currentIndex++;
+
       whichStudentIsDisplayed();
       changingButtonColor();
+      // fadeIn();
     }
   }
 
+  function fadeIn() {
+     //
+    //  $('.studentContainer').css({opacity: '0'}).animate({opacity: '1'}, 10);
+   }
+
+// function fadeOut() {
+//   $('.studentContainer').css({opacity: '1'}).animate({opacity:'0'}), 10);
+// }
 
 
 
