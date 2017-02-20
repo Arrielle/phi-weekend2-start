@@ -1,6 +1,7 @@
 $(document).ready(function(){
   var currentIndex = '';
-  var intervalID = setInterval(intervalFunction, 1000);
+  var intervalID = setInterval(intervalFunction, 3000);
+  var newIntervalID = '';
   // Upon page load, get the data from the server
   $.ajax({
     type: "GET",
@@ -69,23 +70,26 @@ $(document).ready(function(){
   }
 
   function nextButtonFunc(){
-    $('#nextButton').on('click', function(){
-      clearInterval(intervalID);
-      // intervalID;
-      // currentIndex++;
-      if (currentIndex > $numPeople - 1){
-        currentIndex = 0;
-      }
-      currentIndex;
+     $('#nextButton').on('click', function(){
+       clearInterval(newIntervalID);
+       clearInterval(intervalID);
+      console.log('NEXT button has been clicked');
+       currentIndex++;
+       if (currentIndex > $numPeople - 1){
+         currentIndex = 0;
+       }
+       currentIndex;
+      console.log(currentIndex);
       whichStudentIsDisplayed();
       changingButtonColor();
-    });
-  }
+      newIntervalID = setInterval(intervalFunction, 3000);
+     });
+   }
 
   function prevButtonFunc(){
     $('#prevButton').on('click', function(){
-      // clearInterval(intervalID);
-      // intervalID;
+      clearInterval(newIntervalID);
+      clearInterval(intervalID);
       currentIndex--;
       if (currentIndex < 0){
         currentIndex = $numPeople - 1;
@@ -93,18 +97,21 @@ $(document).ready(function(){
       currentIndex;
       whichStudentIsDisplayed();
       changingButtonColor();
+      newIntervalID = setInterval(intervalFunction, 3000);
     });
   }
 
   function boxOnClick(){
     $('#pickerContainer').on('click', '.pickerButton', function(){
-      // intervalID;
-      // currentIndex++;
+      clearInterval(newIntervalID);
+      clearInterval(intervalID);
+      currentIndex++;
       console.log('box was clicked');
       var selectedPickerButton = $('.pickerButton').index(this);
       currentIndex = selectedPickerButton;
       whichStudentIsDisplayed();
       changingButtonColor();
+      newIntervalID = setInterval(intervalFunction, 3000);
     });
   }
 
@@ -116,10 +123,9 @@ $(document).ready(function(){
       currentIndex++;
       whichStudentIsDisplayed();
       changingButtonColor();
-      intervalID;
-      console.log(currentIndex);
     }
   }
+
 
 
 

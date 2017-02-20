@@ -21,11 +21,17 @@
 }
 
 .pickerButton {
-  background-color: white;
-  height: 30px;
-  width: 30px;
+  width:15px;
+  height:15px;
+  border-radius: 50%;
   display: inline-block;
+  background: white;
+  box-shadow: 0 0 3px gray;
   margin: 5px;
+}
+
+.pickerButton:hover {
+  background: pink;
 }
 
 #pickerContainer {
@@ -39,10 +45,6 @@
   text-align: center;
 }
 
-.pickerButton:hover {
-  height: 35px;
-  width: 35px;
-}
 
 #prevButton {
   padding: 10px;
